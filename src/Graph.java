@@ -19,6 +19,22 @@ public class Graph {
         e.getB().add(this, e);
     }
 
+    public void add(Vertex v) {
+        vertices.add(v);
+        v.add(this, null);
+    }
+
+    public void remove(Vertex v) {
+        vertices.remove(v);
+        for (Iterator<Edge> edgeIterator = v.getEdges(this); edgeIterator.hasNext(); ) {
+            Edge edge = edgeIterator.next();
+            edges.remove(edge);
+            Vertex other = edge.getOpposite(v);
+            other.remove(this, edge);
+        }
+        v.remove(this);
+    }
+
     public void remove(Edge e) {
         edges.remove(e);
         e.getA().remove(this, e);

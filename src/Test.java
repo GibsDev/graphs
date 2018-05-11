@@ -17,21 +17,8 @@ public class Test {
 
         System.out.println(domain);
 
-        domain.remove(ad);
+        domain.remove(b);
 
-        System.out.println(domain);
-
-        Graph path = new Graph();
-
-        path.add(ab);
-
-        System.out.println(path);
-
-        Graph inverse = path.inverse(domain);
-
-        bc.setValue(inverse, 20);
-
-        System.out.println(inverse);
         System.out.println(domain);
     }
 }

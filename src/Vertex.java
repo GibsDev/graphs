@@ -45,13 +45,19 @@ public class Vertex extends GraphElement {
         if (!contextEdges.containsKey(ctx)) {
             contextEdges.put(ctx, new HashSet<>());
         }
-        contextEdges.get(ctx).add(e);
+        if(e != null) {
+            contextEdges.get(ctx).add(e);
+        }
     }
 
     public void remove(Graph ctx, Edge e) {
         if (contextEdges.containsKey(ctx)) {
             contextEdges.get(ctx).remove(e);
         }
+    }
+
+    public void remove(Graph ctx) {
+        contextEdges.remove(ctx);
     }
 
     public Iterator<Vertex> getAllNeightbors() {
