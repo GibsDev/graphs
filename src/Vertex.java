@@ -99,8 +99,12 @@ public class Vertex extends GraphElement {
         return false;
     }
 
+    public String toString(Graph ctx){
+        return this.label + "(" + this.getValue(ctx) + ")";
+    }
+
     @Override
     public String toString() {
-        return this.label;
+        return this.label + "(" + this.getDefaultValue() + ")";
     }
 }

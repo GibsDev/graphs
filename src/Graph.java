@@ -99,7 +99,7 @@ public class Graph {
         String out = "Graph {\n";
         for (Iterator<Edge> edgeIterator = edges.iterator(); edgeIterator.hasNext(); ) {
             Edge edge = edgeIterator.next();
-            out += "\t" + edge;
+            out += "\t" + edge.toString(this);
             if (edgeIterator.hasNext()) {
                 out += ",";
             }

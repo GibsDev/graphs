@@ -1,6 +1,7 @@
 public class Test {
     public static void main(String[] args) {
         Vertex a = new Vertex("A");
+        a.setDefaultValue(10);
         Vertex b = new Vertex("B");
         Vertex c = new Vertex("C");
         Vertex d = new Vertex("D");

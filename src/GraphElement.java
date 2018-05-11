@@ -15,6 +15,9 @@ public abstract class GraphElement {
     }
 
     public int getValue(Graph ctx) {
+        if(!values.containsKey(ctx)){
+            return value;
+        }
         return values.get(ctx);
     }
 

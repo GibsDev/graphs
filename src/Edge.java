@@ -39,6 +39,10 @@ public class Edge extends GraphElement {
         return (v1 == a && v2 == b) || (v2 == a && v1 == b);
     }
 
+    public String toString(Graph ctx){
+        return a.toString(ctx) + "-(" + this.getValue(ctx) + ")-" + b.toString(ctx);
+    }
+
     @Override
     public String toString() {
         return a + "-" + b;
