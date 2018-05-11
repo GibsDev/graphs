@@ -52,6 +52,12 @@ public class Graph {
         return edge;
     }
 
+    public Edge connect(Vertex a, Vertex b, int value) {
+        Edge e = this.connect(a, b);
+        e.setValue(this, value);
+        return e;
+    }
+
     /**
      * @param domain the graph that contains the domain of edges to subtract from
      * @return a clone of the domain graph with the edges and vertices from this graph context removed

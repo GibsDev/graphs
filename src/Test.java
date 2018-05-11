@@ -9,8 +9,11 @@ public class Test {
         Graph domain = new Graph();
 
         Edge ab = domain.connect(a, b);
+        ab.setDefaultValue(5);
         Edge bc = domain.connect(b, c);
+        bc.setDefaultValue(10);
         Edge ad = domain.connect(a, d);
+        ad.setDefaultValue(15);
 
         System.out.println(domain);
 
@@ -19,10 +22,16 @@ public class Test {
         System.out.println(domain);
 
         Graph path = new Graph();
+
         path.add(ab);
+
         System.out.println(path);
 
         Graph inverse = path.inverse(domain);
+
+        bc.setValue(inverse, 20);
+
         System.out.println(inverse);
+        System.out.println(domain);
     }
 }
