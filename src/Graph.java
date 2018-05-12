@@ -61,8 +61,8 @@ public class Graph {
 
     public Vertex getVertexByName(String name) {
         for (Iterator<Vertex> vi = vertices.iterator(); vi.hasNext(); ) {
-            Vertex next =  vi.next();
-            if(next.getLabel().equals(name)){
+            Vertex next = vi.next();
+            if (next.getLabel().equals(name)) {
                 return next;
             }
         }
@@ -82,6 +82,45 @@ public class Graph {
         Edge e = this.connect(a, b);
         e.setValue(this, value);
         return e;
+    }
+
+    /**
+     * Search through the points in this graph (assumes that this graph is the search domain)
+     *
+     * @param start
+     * @param end
+     * @return
+     */
+    public Graph depthFirstSearch(Vertex start, Vertex end) {
+        Graph unsearched = this.clone();
+        Graph search = new Graph();
+        boolean found = dfs(unsearched, search, start, end);
+        if(found){
+            return search;
+        }
+        return null;
+    }
+
+    public boolean dfs(Graph unsearched, Graph search, Vertex start, Vertex end) {
+        boolean found = false;
+        for (Iterator<Edge> edgeIterator = start.getEdges(unsearched); edgeIterator != null && edgeIterator.hasNext(); ) {
+            Edge e = edgeIterator.next();
+            Vertex v = e.getOpposite(start);
+            search.add(e);
+            unsearched.remove(start);
+            if (v == end) {
+                // found
+                return true;
+            } else {
+                found = dfs(unsearched, search, v, end);
+                if(!found){
+                    search.remove(v);
+                } else {
+                    return true;
+                }
+            }
+        }
+        return found;
     }
 
     /**
@@ -122,6 +161,10 @@ public class Graph {
         }
         for (Vertex v : vertices) {
             clone.vertices.add(v);
+            // transfer over edge tracking to clone
+            v.getEdges(this).forEachRemaining(e -> {
+                v.add(clone, e);
+            });
         }
         return clone;
     }
@@ -139,5 +182,17 @@ public class Graph {
         }
         out += "}";
         return out;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        // Remove tracking of this graph
+        for (Edge edge : edges) {
+            edge.remove(this);
+        }
+        for (Vertex vertex : vertices) {
+            vertex.remove(this);
+        }
+        super.finalize();
     }
 }

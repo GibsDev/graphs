@@ -20,7 +20,8 @@ public class GraphParser {
                 } else if (line.startsWith("e")) {
                     String[] split = line.split("\\s+");
                     int length = Integer.parseInt(split[3]);
-                    graph.connect(graph.getVertexByName(split[1]), graph.getVertexByName(split[2]), length);
+                    Edge e = graph.connect(graph.getVertexByName(split[1]), graph.getVertexByName(split[2]));
+                    e.setDefaultValue(length);
                 }
             }
         } catch (Exception e) {

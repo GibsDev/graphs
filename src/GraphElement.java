@@ -24,4 +24,8 @@ public abstract class GraphElement {
     public void setValue(Graph ctx, int value) {
         values.put(ctx, value);
     }
+
+    public void remove(Graph ctx){
+        values.remove(ctx);
+    }
 }

@@ -30,6 +30,9 @@ public class Vertex extends GraphElement {
     }
 
     public Iterator<Edge> getEdges(Graph ctx) {
+        if(contextEdges.get(ctx) == null){
+            return null;
+        }
         return contextEdges.get(ctx).iterator();
     }
 
@@ -58,13 +61,14 @@ public class Vertex extends GraphElement {
 
     public void remove(Graph ctx) {
         contextEdges.remove(ctx);
+        super.remove(ctx);
     }
 
     public Iterator<Vertex> getAllNeightbors() {
-        return getNeightbors(null);
+        return getNeighbors(null);
     }
 
-    public Iterator<Vertex> getNeightbors(Graph ctx) {
+    public Iterator<Vertex> getNeighbors(Graph ctx) {
         final Vertex self = this;
         final Iterator<Edge> ei;
         if (ctx == null) {
@@ -94,7 +98,7 @@ public class Vertex extends GraphElement {
         if (ctx == null) {
             vi = this.getAllNeightbors();
         } else {
-            vi = this.getNeightbors(ctx);
+            vi = this.getNeighbors(ctx);
         }
         while (vi.hasNext()) {
             Vertex v = vi.next();
