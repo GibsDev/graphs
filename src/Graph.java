@@ -187,16 +187,29 @@ public class Graph {
     }
 
     /**
+     * @param start
+     * @param end
+     * @return the shortest path between the two given vertices, or null if no path exists
+     */
+    public Graph shortestPath(Vertex start, Vertex end) {
+        return null;
+    }
+
+    /**
+     * Generates a graph that is the inverse of this graph within the given domain (superset of this graph).
+     * Removes all edge from this graph, then removes all vertices that are no longer connected.
      * @param domain the graph that contains the domain of edges to subtract from
-     * @return a clone of the domain graph with the edges and vertices from this graph context removed
+     * @return a clone of the domain graph with the edges removed and disconnected vertices removed.
      */
     public Graph inverse(Graph domain) {
         Graph inverse = domain.clone();
         for (Edge e : edges) {
-            inverse.edges.remove(e);
+            inverse.remove(e);
         }
         for (Vertex v : vertices) {
-            inverse.vertices.remove(v);
+            if(v.getDegree(inverse) == 0){
+                inverse.remove(v);
+            }
         }
         return inverse;
     }
@@ -214,6 +227,29 @@ public class Graph {
             union.vertices.add(v);
         }
         return union;
+    }
+
+    /**
+     * @param other
+     * @return a new graph made of this and the given graph
+     */
+    public Graph join(Graph other) {
+        Graph join = this.clone();
+        join.merge(this);
+        return join;
+    }
+
+    /**
+     * Merges the given graph into this one
+     * @param other
+     */
+    public void merge(Graph other) {
+        for (Edge e : other.edges) {
+            this.add(e);
+        }
+        for (Vertex v : other.vertices) {
+            this.add(v);
+        }
     }
 
     @Override

@@ -29,7 +29,7 @@ public class Vertex extends GraphElement {
     /**
      * @return every edge that is connected to this vertex from any graph context
      */
-    public Iterator<Edge> getAllEdges() {
+    public Iterator<Edge> getEdges() {
         return edges.iterator();
     }
 
@@ -98,9 +98,23 @@ public class Vertex extends GraphElement {
     }
 
     /**
+     * @return the degree of all graph contexts combined
+     */
+    public int getDegree(){
+        return edges.size();
+    }
+
+    /**
+     * @return the degree within this context
+     */
+    public int getDegree(Graph ctx){
+        return contextEdges.get(ctx).size();
+    }
+
+    /**
      * @return all of the neighboring vertices from any graph
      */
-    public Iterator<Vertex> getAllNeightbors() {
+    public Iterator<Vertex> getNeightbors() {
         return getNeighbors(null);
     }
 
@@ -112,7 +126,7 @@ public class Vertex extends GraphElement {
         final Vertex self = this;
         final Iterator<Edge> ei;
         if (ctx == null) {
-            ei = this.getAllEdges();
+            ei = this.getEdges();
         } else {
             ei = this.getEdges(ctx);
         }
@@ -146,7 +160,7 @@ public class Vertex extends GraphElement {
     public boolean hasEdgeTo(Graph ctx, Vertex other) {
         Iterator<Vertex> vi;
         if (ctx == null) {
-            vi = this.getAllNeightbors();
+            vi = this.getNeightbors();
         } else {
             vi = this.getNeighbors(ctx);
         }
