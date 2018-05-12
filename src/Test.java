@@ -8,21 +8,17 @@ public class Test {
         Vertex a = domain.getVertexByName("A");
         Vertex b = domain.getVertexByName("B");
 
-        a.getEdges(domain).forEachRemaining(e -> {
-            System.out.println(e.toString(domain));
-        });
-
         System.out.println("-----");
-
-        Graph clone = domain.clone();
-
-        clone.getEdges().forEachRemaining(e -> {
-            System.out.println(e.toString(clone));
-        });
 
         Graph search = domain.depthFirstSearch(a, b);
 
         System.out.println(search);
+
+        // Test set operations
+
+        Graph inverseSearch = search.inverse(domain);
+
+        System.out.println(inverseSearch);
     }
 
 }
