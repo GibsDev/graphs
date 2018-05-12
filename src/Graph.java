@@ -59,6 +59,16 @@ public class Graph {
         return null;
     }
 
+    public Vertex getVertexByName(String name) {
+        for (Iterator<Vertex> vi = vertices.iterator(); vi.hasNext(); ) {
+            Vertex next =  vi.next();
+            if(next.getLabel().equals(name)){
+                return next;
+            }
+        }
+        return null;
+    }
+
     public Edge connect(Vertex a, Vertex b) {
         Edge edge = this.getEdgeBetween(a, b);
         if (edge == null) {

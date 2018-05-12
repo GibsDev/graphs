@@ -1,0 +1,20 @@
+# 5 vertex graph 
+
+# vertex names and coordinates
+v A 11 80
+v B 9 20
+v C 91 47
+v D 112 13
+v E 33 43
+
+# edges and weights
+e A B 60
+e A C 86
+e A E 43
+e B D 103
+e B E 33
+e C D 39
+e C E 58
+e D E 84
+
+
