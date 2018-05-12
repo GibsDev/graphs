@@ -15,7 +15,7 @@ public abstract class GraphElement {
     }
 
     public int getValue(Graph ctx) {
-        if(!values.containsKey(ctx)){
+        if (!values.containsKey(ctx)) {
             return value;
         }
         return values.get(ctx);
@@ -25,7 +25,7 @@ public abstract class GraphElement {
         values.put(ctx, value);
     }
 
-    public void remove(Graph ctx){
+    public void remove(Graph ctx) {
         values.remove(ctx);
     }
 }

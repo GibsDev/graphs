@@ -95,7 +95,7 @@ public class Graph {
         Graph unsearched = this.clone();
         Graph search = new Graph();
         boolean found = dfs(unsearched, search, start, end);
-        if(found){
+        if (found) {
             return search;
         }
         return null;
@@ -113,7 +113,7 @@ public class Graph {
                 return true;
             } else {
                 found = dfs(unsearched, search, v, end);
-                if(!found){
+                if (!found) {
                     search.remove(v);
                 } else {
                     return true;

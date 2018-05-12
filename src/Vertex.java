@@ -30,7 +30,7 @@ public class Vertex extends GraphElement {
     }
 
     public Iterator<Edge> getEdges(Graph ctx) {
-        if(contextEdges.get(ctx) == null){
+        if (contextEdges.get(ctx) == null) {
             return null;
         }
         return contextEdges.get(ctx).iterator();
@@ -48,7 +48,7 @@ public class Vertex extends GraphElement {
         if (!contextEdges.containsKey(ctx)) {
             contextEdges.put(ctx, new HashSet<>());
         }
-        if(e != null) {
+        if (e != null) {
             contextEdges.get(ctx).add(e);
         }
     }
@@ -109,7 +109,7 @@ public class Vertex extends GraphElement {
         return false;
     }
 
-    public String toString(Graph ctx){
+    public String toString(Graph ctx) {
         return this.label + "(" + this.getValue(ctx) + ")";
     }
 
